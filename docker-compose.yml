@@ -1,0 +1,30 @@
+version: '3.3'
+services:
+   db:
+     image: mysql:5.7
+     volumes:
+       - /mnt/efs/fs1/mysql:/var/lib/mysql:rw,delegated
+     restart: always
+     environment:
+       MYSQL_ROOT_PASSWORD: clevertap
+       MYSQL_DATABASE: clevertap
+       MYSQL_USER: clevertap
+       MYSQL_PASSWORD: clevertap
+
+   wordpress:
+     depends_on:
+       - db
+     volumes:
+       - /mnt/efs/fs1/wp-uploads:/var/www/html/wp-content/uploads:rw,delegated
+     build: .
+     ports:
+       - "80:80"
+     restart: always
+     environment:
+       WORDPRESS_DB_HOST: db:3306
+       WORDPRESS_DB_USER: clevertap
+       WORDPRESS_DB_PASSWORD: clevertap
+       WORDPRESS_DB_NAME: clevertap
+volumes:
+     db_data: {}
+     wordpress: {}
