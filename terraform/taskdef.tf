@@ -7,7 +7,7 @@ resource "aws_ecs_task_definition" "taskdef-clevertap-wordpress" {
   execution_role_arn       = "arn:aws:iam::900024488048:role/aws-service-role/ecs.amazonaws.com/AWSServiceRoleForECS"
   container_definitions    = jsonencode([
     {
-      name = "taskdef-clevetap-wordpress"
+      name = "taskdef-clevertap-wordpress"
       image = "${var.ecr_repository_url}:${var.tag}"
       memory = 4096
       cpu = 2048
