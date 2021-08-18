@@ -12,8 +12,8 @@ pipeline {
             }
         }
         stage('Deploy'){
-          dir('terraform'){
             steps{
+                 dir('terraform'){
                 sh 'terraform init' 
                 sh 'terraform validate'
                 sh 'sleep 10'
