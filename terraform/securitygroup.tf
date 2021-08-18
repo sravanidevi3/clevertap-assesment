@@ -13,7 +13,7 @@ resource "aws_security_group_rule" "service_in_lb" {
   protocol                 = "tcp"
   cidr_blocks              = ["0.0.0.0/0"]
 
-  security_group_id = aws_security_group.default.id
+  security_group_id = aws_security_group.wordpress.id
 }
 resource "aws_security_group_rule" "service_out_lb" {
   description = "Outbound RUles"
@@ -24,5 +24,5 @@ resource "aws_security_group_rule" "service_out_lb" {
   protocol    = -1
   cidr_blocks = ["0.0.0.0/0"]
 
-  security_group_id = aws_security_group.default.id
+  security_group_id = aws_security_group.wordpress.id
 }
