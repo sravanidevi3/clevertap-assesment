@@ -16,3 +16,13 @@ resource "aws_subnet" "subnet-clevertap-1" {
        "Name" = "clevertap-us-east-1"
      } 
 }
+
+resource "aws_subnet" "subnet-clevertap-2" {
+    vpc_id = "${aws_vpc.vpc-clevertap.id}"
+    cidr_block = "10.0.0.0/16"
+    map_public_ip_on_launch = "true"
+    availability_zone = "us-east-1b"
+     tags = {
+       "Name" = "clevertap-us-east-1"
+     } 
+}
