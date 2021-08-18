@@ -52,7 +52,7 @@ resource "aws_ecs_service" "service-clevertap-wordpress" {
     }
     network_configuration {
       subnets = [aws_subnet.subnet-clevertap-1.id,aws_subnet.subnet-clevertap-2.id]
-      security_groups = [aws_security_group.default.id]
+      security_groups = [aws_security_group.wordpress.id]
       assign_public_ip = true
     }
     load_balancer {
