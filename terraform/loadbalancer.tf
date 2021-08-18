@@ -2,7 +2,7 @@ resource "aws_lb" "lb-wordpress-clevertap" {
     name = "lb-wordpress-clevertap"
     internal = "false"
     load_balancer_type = "application"
-    security_groups = [aws_security_group.default.id]
+    security_groups = [aws_security_group.wordpress.id]
     subnets = [aws_subnet.subnet-clevertap-1.id]
 }
 
