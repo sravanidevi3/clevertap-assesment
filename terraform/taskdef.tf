@@ -2,8 +2,8 @@ resource "aws_ecs_task_definition" "taskdef-clevertap-wordpress" {
     family = "taskdef-clevertap-wordpress"
     network_mode             = "awsvpc"
     requires_compatibilities = ["FARGATE"]
-    memory                   = "4096"
-    cpu                      = "2048"    
+    memory                   = 4096
+    cpu                      = 2048    
     execution_role_arn = "arn:aws:iam::900024488048:role/aws-service-role/ecs.amazonaws.com/AWSServiceRoleForECS"
     container_definitions = <<DEFINITION
     [
@@ -28,10 +28,10 @@ resource "aws_ecs_task_definition" "taskdef-clevertap-wordpress" {
         ]
         }
     ]
-    DEFINITION
+DEFINITION
   volume {
       name      = "efs-wordpress"
-          efs_volume_configuration {
+       efs_volume_configuration {
                 file_system_id = aws_efs_file_system.wordpress.id
                       root_directory = "/var/www/html/wp-content/uploads"
                           }
@@ -51,7 +51,7 @@ resource "aws_ecs_service" "service-clevertap-wordpress" {
       "env" = "Testing"
     }
     network_configuration {
-      subnets = [aws_subnet.subnet-clevertap-1.id]
+      subnets = [aws_subnet.subnet-clevertap-1.id,aws_subnet.subnet-clevertap-2.id]
       security_groups = [aws_security_group.wordpress.id]
       assign_public_ip = true
     }
