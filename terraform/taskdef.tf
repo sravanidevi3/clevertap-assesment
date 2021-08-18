@@ -1,43 +1,30 @@
 resource "aws_ecs_task_definition" "taskdef-clevertap-wordpress" {
-    family = "taskdef-clevertap-wordpress"
-    network_mode             = "awsvpc"
-    requires_compatibilities = ["FARGATE"]
-    memory                   = 4096
-    cpu                      = 2048    
-    execution_role_arn = "arn:aws:iam::900024488048:role/aws-service-role/ecs.amazonaws.com/AWSServiceRoleForECS"
-    container_definitions = <<DEFINITION
-    [
+  family                   = "taskdef-clevertap-wordpress"
+  network_mode             = "awsvpc"
+  requires_compatibilities = ["FARGATE"]
+  memory                   = "4096"
+  cpu                      = "2048"
+  execution_role_arn       = "arn:aws:iam::765771042989:role/ecsTaskExecutionRole"
+  container_definitions    = jsonencode([
+    {
+      name = "taskdef-clevetap-wordpress"
+      image = "${var.ecr_repository_url}:${var.tag}"
+      memory = 4096
+      cpu = 2048
+      essential = true
+      portMappings = [
         {
-            "name" :  "taskdef-clevertap-wordpress",
-            "image" : "${var.ecr_repository_url}:${var.tag}",
-            "memory" : 4096,
-            "cpu" : 2048,
-            "portMappings" : [
-         {
-          "containerPort" : 80,
-          "hostPort" : 80,
-          "protocol" : "tcp"
-         }
-      ],
-        "essential" : true,
-        "mountPoints":[
-          {
-            "containerPath": "/var/www/html/wp-content/uploads",
-            "sourceVolume": "efs-wordpress"
-          }
-        ]
+          "containerPort" = 80
+          "hostPort" = 80
         }
-    ]
-DEFINITION
-  volume {
-      name      = "efs-wordpress"
-       efs_volume_configuration {
-                file_system_id = aws_efs_file_system.wordpress.id
-                      root_directory = "/var/www/html/wp-content/uploads"
-                          }
-                            }
-                            }
-
+      ]
+    }
+  ])
+  tags = {
+    name = "Clevertap"
+    purpose = "Assesment"
+  }
+}
 resource "aws_ecs_service" "service-clevertap-wordpress" {
     name = "taskdef-clevertap-wordpress"
     cluster = aws_ecs_cluster.clevertap.id
