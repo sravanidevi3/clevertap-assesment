@@ -1,7 +1,7 @@
 resource "aws_security_group" "wordpress" {
   description = "Security group created for Wordpress Clevertap"
   name        = var.name
-  vpc_id = aws_vpc.vpc-clevertap.id
+  vpc_id = var.vpc_id
 }
 
 resource "aws_security_group_rule" "service_in_lb" {
