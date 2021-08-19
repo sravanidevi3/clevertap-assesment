@@ -3,14 +3,14 @@ resource "aws_lb" "lb-wordpress-clevertap" {
     internal = "false"
     load_balancer_type = "application"
     security_groups = [aws_security_group.wordpress.id]
-    subnets = [aws_subnet.subnet-clevertap-1.id,aws_subnet.subnet-clevertap-2.id]
+    subnets = data.aws_subnet_ids.subnets.ids
 }
 
 resource "aws_lb_target_group" "targetgrp-lb-clevertap" {
     name = "targetgrp-lb-clevertap"
     port = 80
     protocol = "HTTP"
-    vpc_id = aws_vpc.vpc-clevertap.id
+    vpc_id = var.vpc_id
     proxy_protocol_v2 = "false"
     target_type = "ip"
 
