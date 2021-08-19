@@ -24,6 +24,7 @@ pipeline {
     }
     post {
         always{
+            cleanWs()
             script{
              sh 'docker rmi $(docker images -aq)'   
             }
