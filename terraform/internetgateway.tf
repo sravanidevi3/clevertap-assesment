@@ -21,6 +21,6 @@ resource "aws_internet_gateway" "clevertap-ig" {
   }
 
   resource "aws_route_table_association" "routetable-ass-clevertap" {
-      subnet_id = data.aws_subnet_ids.subnets.ids
+      subnet_id = "subnet-98e1bac7"
       route_table_id = "${aws_route_table.routetable-clevertap.id}"  
   }
