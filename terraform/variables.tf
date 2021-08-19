@@ -3,6 +3,10 @@ variable "name" {
   default = "wordpress-clevertap"
 }
 
+variable "vpc_id" {
+ type = string
+ default = "vpc-98a1cbe5"
+}
 variable "ecr_repository_url" {
   type        = string
   description = "Repository URL"
