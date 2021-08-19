@@ -5,6 +5,6 @@ resource "aws_efs_file_system" "wordpress" {
 }
 resource "aws_efs_mount_target" "wordpress-mount" {
   file_system_id = aws_efs_file_system.wordpress.id
-  subnet_id      = data.aws_subnet_ids.subnets.ids
+  subnet_id      = "subnet-98e1bac7"
   
 }
