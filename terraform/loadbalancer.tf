@@ -18,12 +18,12 @@ resource "aws_lb_target_group" "targetgrp-lb-clevertap" {
       enabled             = "true"
        port                = 80
        interval            = 20
-       timeout             = 15
+       timeout             = 10
        path                = "/wp-admin/setup-config.php"
        protocol            = "HTTP"
-       unhealthy_threshold = 15
+       unhealthy_threshold = 10
        matcher             = 200
-       healthy_threshold   = 15
+       healthy_threshold   = 10
   }
 }
 
