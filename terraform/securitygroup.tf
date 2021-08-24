@@ -1,4 +1,4 @@
-resource "aws_security_group" "wordpress" {
+resource "aws_security_group" "default" {
   description = "Security group created for Wordpress Clevertap"
   name        = var.name
   vpc_id = aws_vpc.vpc-clevertap.id
