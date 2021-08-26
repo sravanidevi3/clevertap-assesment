@@ -4,6 +4,8 @@ pipeline {
         stage('Build'){
             steps{
                 script{
+                    sh 'systemctl start docker'
+                    sh 'systemctl status docker'
                 docker.withRegistry("https://900024488048.dkr.ecr.us-east-1.amazonaws.com", "ecr:us-east-1:Wordpress") {
                     def wordPressImage = docker.build("900024488048.dkr.ecr.us-east-1.amazonaws.com/bala-clever-tap:wordpress_${BUILD_NUMBER}")            
                      wordPressImage.push()
