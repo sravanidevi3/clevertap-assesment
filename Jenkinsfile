@@ -17,7 +17,6 @@ pipeline {
                  dir('terraform'){
                 sh 'terraform init' 
                 sh 'terraform validate'
-                sh 'sleep 10'
                 sh 'terraform apply -var="tag=wordpress_${BUILD_NUMBER}" -auto-approve'
             }
           }
@@ -27,7 +26,7 @@ pipeline {
         always{
 //             cleanWs()
             script{
-             sh 'docker rmi $(docker images -aq)'   
+              sh 'docker system prune -af'
             }
         }
     }
