@@ -2,16 +2,16 @@ resource "aws_ecs_task_definition" "taskdef-clevertap-wordpress" {
     family = "taskdef-clevertap-wordpress"
     network_mode             = "awsvpc"
     requires_compatibilities = ["FARGATE"]
-    memory                   = "1024"
-    cpu                      = "512"    
+    memory                   = "2048"
+    cpu                      = "1024"    
     execution_role_arn = "arn:aws:iam::900024488048:role/ecsecrTaskExecutionRole"
     container_definitions = <<DEFINITION
     [
         {
             "name" :  "taskdef-clevertap-wordpress",
             "image" : "${var.ecr_repository_url}:${var.tag}",
-            "memory" : 1024,
-            "cpu" : 512,
+            "memory" : 2048,
+            "cpu" : 1024,
             "portMappings" : [
          {
           "containerPort" : 80,
