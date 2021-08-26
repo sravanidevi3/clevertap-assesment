@@ -4,7 +4,7 @@ resource "aws_security_group" "default" {
   vpc_id = aws_vpc.vpc-clevertap.id
 }
 
-resource "aws_security_group_rule" "service_in_lb" {
+resource "aws_security_group_rule" "wordpress" {
   description = "Inbound Rules"
 
   type                     = "ingress"
@@ -15,7 +15,7 @@ resource "aws_security_group_rule" "service_in_lb" {
 
   security_group_id = aws_security_group.default.id
 }
-resource "aws_security_group_rule" "service_in_lb" {
+resource "aws_security_group_rule" "EFS" {
   description = "Inbound Rules"
 
   type                     = "ingress"
