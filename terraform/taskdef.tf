@@ -4,7 +4,7 @@ resource "aws_ecs_task_definition" "taskdef-clevertap-wordpress" {
     requires_compatibilities = ["FARGATE"]
     memory                   = "1024"
     cpu                      = "512"    
-    execution_role_arn = "arn:aws:iam::900024488048:role/aws-service-role/ecs.amazonaws.com/AWSServiceRoleForECS"
+    execution_role_arn = "arn:aws:iam::900024488048:instance-profile/ecsecrTaskExecutionRole"
     container_definitions = <<DEFINITION
     [
         {
