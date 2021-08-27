@@ -5,54 +5,54 @@ resource "aws_ecs_task_definition" "taskdef-clevertap-wordpress" {
     memory                   = "2048"
     cpu                      = "1024"    
     execution_role_arn = "arn:aws:iam::900024488048:role/ecsecrTaskExecutionRole"
-    container_definitions    = jsonencode([
-    {
-      name = "taskdef-clevertap-wordpress"
-      image = "${var.ecr_repository_url}:${var.tag}"
-      memory = 1024
-      cpu = 512
-      essential = true
-      portMappings = [
-        {
-          "containerPort" = 80
-          "hostPort" = 80
-        }
-      ]
-    }
-  ])
-}
-#     container_definitions = <<DEFINITION
-#     [
+#     container_definitions    = jsonencode([
+#     {
+#       name = "taskdef-clevertap-wordpress"
+#       image = "${var.ecr_repository_url}:${var.tag}"
+#       memory = 1024
+#       cpu = 512
+#       essential = true
+#       portMappings = [
 #         {
-#             "name" :  "taskdef-clevertap-wordpress",
-#             "image" : "${var.ecr_repository_url}:${var.tag}",
-#             "memory" : 2048,
-#             "cpu" : 1024,
-#             "portMappings" : [
-#          {
-#           "containerPort" : 80,
-#           "hostPort" : 80,
-#           "protocol" : "tcp"
-#          }
-#       ],
-#         "essential" : true,
-#         "mountPoints":[
-#           {
-#             "containerPath": "/var/www/html/wp-content/uploads",
-#             "sourceVolume": "efs-wordpress"
-#           }
-#         ]
+#           "containerPort" = 80
+#           "hostPort" = 80
 #         }
-#     ]
-#     DEFINITION
-#   volume {
-#       name      = "efs-wordpress"
-#           efs_volume_configuration {
-#                 file_system_id = aws_efs_file_system.wordpress.id
-#                       root_directory = "/var/www/html/wp-content/uploads"
-#                           }
-#                             }
-#                             }
+#       ]
+#     }
+#   ])
+# }
+    container_definitions = <<DEFINITION
+    [
+        {
+            "name" :  "taskdef-clevertap-wordpress",
+            "image" : "${var.ecr_repository_url}:${var.tag}",
+            "memory" : 2048,
+            "cpu" : 1024,
+            "portMappings" : [
+         {
+          "containerPort" : 80,
+          "hostPort" : 80,
+          "protocol" : "tcp"
+         }
+      ],
+        "essential" : true,
+        "mountPoints":[
+          {
+            "containerPath": "/var/www/html/wp-content/uploads",
+            "sourceVolume": "efs-wordpress"
+          }
+        ]
+        }
+    ]
+    DEFINITION
+  volume {
+      name      = "efs-wordpress"
+          efs_volume_configuration {
+                file_system_id = aws_efs_file_system.wordpress.id
+                      root_directory = "/var/www/html/wp-content/uploads"
+                          }
+                            }
+                            }
 
 resource "aws_ecs_service" "service-clevertap-wordpress" {
     name = "taskdef-clevertap-wordpress"
