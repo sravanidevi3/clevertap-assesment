@@ -10,3 +10,12 @@ resource "aws_db_instance" "clevertap" {
   skip_final_snapshot  = true
   vpc_security_group_ids   = ["${aws_security_group.default.id}"]
 }
+
+resource "aws_db_subnet_group" "clevertap" {
+  name       = "clevertap"
+  subnet_ids = [aws_subnet.subnet-clevertap-1.id,aws_subnet.subnet-clevertap-2.id]
+
+  tags = {
+    Name = "Subnet Group for RDS"
+  }
+}
