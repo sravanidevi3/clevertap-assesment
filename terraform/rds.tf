@@ -4,6 +4,7 @@ resource "aws_db_instance" "clevertap" {
   engine_version       = "5.7"
   instance_class       = "db.t2.micro"
   name                 = "clevertap"
+  identifier           = "clevertap"
   username             = "admin"
   password             = "admin123"
   parameter_group_name = "default.mysql5.7"
