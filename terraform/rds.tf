@@ -1,3 +1,17 @@
+data "aws_secretsmanager_secret" "clevertap" {
+  arn = aws_secretsmanager_secret.clevertap.arn
+}
+
+data "aws_secretsmanager_secret_version" "clevertapversion" {
+  secret_id = data.aws_secretsmanager_secret.clevertap.arn
+}
+
+locals {
+  db_creds = jsondecode(
+  data.aws_secretsmanager_secret_version.clevertapversion.secret_string
+   )
+}
+
 resource "aws_db_instance" "clevertap" {
   allocated_storage    = 10
   engine               = "mysql"
