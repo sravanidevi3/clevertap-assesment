@@ -67,7 +67,7 @@ resource "aws_ecs_task_definition" "taskdef-clevertap-wordpress" {
       name      = "efs-wordpress"
           efs_volume_configuration {
                 file_system_id = aws_efs_file_system.wordpress.id
-                      root_directory = "/var/www/html/wp-content/uploads"
+                      root_directory = "/"
                           }
                             }
                             }
