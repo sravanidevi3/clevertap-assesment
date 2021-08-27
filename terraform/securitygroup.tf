@@ -26,6 +26,17 @@ resource "aws_security_group_rule" "EFS" {
 
   security_group_id = aws_security_group.default.id
 }
+resource "aws_security_group_rule" "MySql" {
+  description = "Inbound Rules"
+
+  type                     = "ingress"
+  from_port                = 3306
+  to_port                  = 3306
+  protocol                 = "tcp"
+  cidr_blocks              = ["0.0.0.0/0"]
+
+  security_group_id = aws_security_group.default.id
+}
 resource "aws_security_group_rule" "service_out_lb" {
   description = "Outbound RUles"
 
