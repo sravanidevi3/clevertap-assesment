@@ -5,22 +5,6 @@ resource "aws_ecs_task_definition" "taskdef-clevertap-wordpress" {
     memory                   = "2048"
     cpu                      = "1024"    
     execution_role_arn = "arn:aws:iam::900024488048:role/ecsecrTaskExecutionRole"
-#     container_definitions    = jsonencode([
-#     {
-#       name = "taskdef-clevertap-wordpress"
-#       image = "${var.ecr_repository_url}:${var.tag}"
-#       memory = 1024
-#       cpu = 512
-#       essential = true
-#       portMappings = [
-#         {
-#           "containerPort" = 80
-#           "hostPort" = 80
-#         }
-#       ]
-#     }
-#   ])
-# }
     container_definitions = <<DEFINITION
     [
         {
