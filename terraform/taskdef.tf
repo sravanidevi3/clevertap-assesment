@@ -19,6 +19,40 @@ resource "aws_ecs_task_definition" "taskdef-clevertap-wordpress" {
           "protocol" : "tcp"
          }
       ],
+            "environment": [
+            {
+                "name": "MYSQL_ROOT_PASSWORD",
+                "value": "clevertap"
+            },
+            {
+                "name": "MYSQL_DATABASE",
+                "value": "clevertap"
+            },
+             {
+                 "name": "MYSQL_USER",
+                 "value": "clevertap"
+             },
+             {
+                 "name": "MYSQL_PASSWORD",
+                 "value": "clevertap"
+             },
+             {
+                "name": "WORDPRESS_DB_HOST",
+                "value": "clevertap"
+            },
+            {
+                "name": "WORDPRESS_DB_USER",
+                "value": "clevertap"
+            },
+            {
+                 "name": "WORDPRESS_DB_PASSWORD",
+                 "value": "clevertap"
+             },
+             {
+                 "name": "WORDPRESS_DB_NAME",
+                 "value": "clevertap"
+             }
+            ],
         "essential" : true,
         "mountPoints":[
           {
