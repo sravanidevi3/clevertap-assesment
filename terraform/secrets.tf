@@ -4,7 +4,7 @@ resource "random_password" "password" {
   override_special = "_%@"
 }
 resource "aws_secretsmanager_secret" "clevertap" {
-   name = "rdsdbcreds"
+   name = "dbsecrets"
 }
 
 resource "aws_secretsmanager_secret_version" "clevertapversion" {
