@@ -1,16 +1,13 @@
-resource "random_password" "password" 
-{ 
+resource "random_password" "password" { 
   length = 16 
   special = true 
   override_special = "_%@"
 }
 
-resource "aws_secretsmanager_secret" "clevertap" 
-{ 
+resource "aws_secretsmanager_secret" "clevertap" { 
   name = "wordpresssecrets"
 }
-resource "aws_secretsmanager_secret_version" "clevertapversion" 
-{ 
+resource "aws_secretsmanager_secret_version" "clevertapversion" { 
   secret_id = aws_secretsmanager_secret.clevertap.id 
   secret_string = <<EOF { "username": "admin", "password": "${random_password.password.result}" 
   }
