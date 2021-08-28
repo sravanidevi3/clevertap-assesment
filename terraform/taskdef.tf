@@ -42,7 +42,7 @@ resource "aws_ecs_task_definition" "taskdef-clevertap-wordpress" {
              },
              {
                 "name": "WORDPRESS_DB_HOST",
-                "value": "${aws_db_instance.database.address}"
+                "value": "${data.aws_db_instance.database.address}"
             },
             {
                 "name": "WORDPRESS_DB_USER",
