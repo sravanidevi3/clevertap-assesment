@@ -1,6 +1,6 @@
-data "aws_db_instance" "database" {
-  db_instance_identifier = "clevertap"
-}
+# data "aws_db_instance" "database" {
+#   db_instance_identifier = "clevertap"
+# }
 
 resource "aws_ecs_task_definition" "taskdef-clevertap-wordpress" {
     family = "taskdef-clevertap-wordpress"
@@ -23,40 +23,40 @@ resource "aws_ecs_task_definition" "taskdef-clevertap-wordpress" {
           "protocol" : "tcp"
          }
       ],
-            "environment": [
-            {
-                "name": "MYSQL_ROOT_PASSWORD",
-                "value": "${local.db_creds.password}"
-            },
-            {
-                "name": "MYSQL_DATABASE",
-                "value": "clevertap"
-            },
-             {
-                 "name": "MYSQL_USER",
-                 "value": "${local.db_creds.username}"
-             },
-             {
-                 "name": "MYSQL_PASSWORD",
-                 "value": "${local.db_creds.password}"
-             },
-             {
-                "name": "WORDPRESS_DB_HOST",
-                "value": "${data.aws_db_instance.database.address}"
-            },
-            {
-                "name": "WORDPRESS_DB_USER",
-                "value": "${local.db_creds.username}"
-            },
-            {
-                 "name": "WORDPRESS_DB_PASSWORD",
-                 "value": "${local.db_creds.username}"
-             },
-             {
-                 "name": "WORDPRESS_DB_NAME",
-                 "value": "clevertap"
-             }
-            ],
+#             "environment": [
+#             {
+#                 "name": "MYSQL_ROOT_PASSWORD",
+#                 "value": "${local.db_creds.password}"
+#             },
+#             {
+#                 "name": "MYSQL_DATABASE",
+#                 "value": "clevertap"
+#             },
+#              {
+#                  "name": "MYSQL_USER",
+#                  "value": "${local.db_creds.username}"
+#              },
+#              {
+#                  "name": "MYSQL_PASSWORD",
+#                  "value": "${local.db_creds.password}"
+#              },
+#              {
+#                 "name": "WORDPRESS_DB_HOST",
+#                 "value": "${data.aws_db_instance.database.address}"
+#             },
+#             {
+#                 "name": "WORDPRESS_DB_USER",
+#                 "value": "${local.db_creds.username}"
+#             },
+#             {
+#                  "name": "WORDPRESS_DB_PASSWORD",
+#                  "value": "${local.db_creds.username}"
+#              },
+#              {
+#                  "name": "WORDPRESS_DB_NAME",
+#                  "value": "clevertap"
+#              }
+#             ],
         "essential" : true,
         "mountPoints":[
           {
