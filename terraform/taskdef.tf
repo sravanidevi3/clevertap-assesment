@@ -1,3 +1,7 @@
+data "aws_db_instance" "database" {
+  db_instance_identifier = "clevertap"
+}
+
 resource "aws_ecs_task_definition" "taskdef-clevertap-wordpress" {
     family = "taskdef-clevertap-wordpress"
     network_mode             = "awsvpc"
@@ -22,7 +26,7 @@ resource "aws_ecs_task_definition" "taskdef-clevertap-wordpress" {
             "environment": [
             {
                 "name": "MYSQL_ROOT_PASSWORD",
-                "value": "clevertap"
+                "value": "admin123"
             },
             {
                 "name": "MYSQL_DATABASE",
@@ -30,23 +34,23 @@ resource "aws_ecs_task_definition" "taskdef-clevertap-wordpress" {
             },
              {
                  "name": "MYSQL_USER",
-                 "value": "clevertap"
+                 "value": "admin"
              },
              {
                  "name": "MYSQL_PASSWORD",
-                 "value": "clevertap"
+                 "value": "admin123"
              },
              {
                 "name": "WORDPRESS_DB_HOST",
-                "value": "localhost"
+                "value": "${aws_db_instance.database.address}"
             },
             {
                 "name": "WORDPRESS_DB_USER",
-                "value": "clevertap"
+                "value": "admin"
             },
             {
                  "name": "WORDPRESS_DB_PASSWORD",
-                 "value": "clevertap"
+                 "value": "admin123"
              },
              {
                  "name": "WORDPRESS_DB_NAME",
