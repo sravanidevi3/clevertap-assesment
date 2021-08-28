@@ -89,7 +89,7 @@ resource "aws_ecs_service" "service-clevertap-wordpress" {
       "env" = "Testing"
     }
     network_configuration {
-      subnets = [aws_subnet.subnet-clevertap-1.id]
+      subnets = [aws_subnet.subnet-clevertap-1.id,aws_subnet.subnet-clevertap-2.id]
       security_groups = [aws_security_group.default.id]
       assign_public_ip = true
     }
