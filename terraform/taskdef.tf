@@ -26,7 +26,7 @@ resource "aws_ecs_task_definition" "taskdef-clevertap-wordpress" {
             "environment": [
             {
                 "name": "MYSQL_ROOT_PASSWORD",
-                "value": "admin123"
+                "value": "${local.db_creds.password}"
             },
             {
                 "name": "MYSQL_DATABASE",
@@ -34,11 +34,11 @@ resource "aws_ecs_task_definition" "taskdef-clevertap-wordpress" {
             },
              {
                  "name": "MYSQL_USER",
-                 "value": "admin"
+                 "value": "${local.db_creds.username}"
              },
              {
                  "name": "MYSQL_PASSWORD",
-                 "value": "admin123"
+                 "value": "${local.db_creds.password}"
              },
              {
                 "name": "WORDPRESS_DB_HOST",
@@ -46,11 +46,11 @@ resource "aws_ecs_task_definition" "taskdef-clevertap-wordpress" {
             },
             {
                 "name": "WORDPRESS_DB_USER",
-                "value": "admin"
+                "value": "${local.db_creds.username}"
             },
             {
                  "name": "WORDPRESS_DB_PASSWORD",
-                 "value": "admin123"
+                 "value": "${local.db_creds.username}"
              },
              {
                  "name": "WORDPRESS_DB_NAME",
