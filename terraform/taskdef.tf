@@ -1,5 +1,6 @@
 data "aws_db_instance" "database" {
   db_instance_identifier = "clevertap"
+  depends_on = [aws_db_instance.clevertap]
 }
 
 resource "aws_ecs_task_definition" "taskdef-clevertap-wordpress" {
