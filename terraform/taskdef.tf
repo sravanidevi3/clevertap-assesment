@@ -96,7 +96,7 @@ resource "aws_ecs_service" "service-clevertap-wordpress" {
     }
     load_balancer {
        target_group_arn = aws_lb_target_group.targetgrp-lb-clevertap.arn
-       container_name = "taskdef-clevertap-wordpress"
+       container_name = "clevertap-wordpress"
        container_port = 80
     }
     depends_on = [
