@@ -12,7 +12,7 @@ resource "aws_ecs_task_definition" "taskdef-clevertap-wordpress" {
     container_definitions = <<DEFINITION
     [
         {
-            "name" :  "taskdef-clevertap-wordpress",
+            "name" :  "clevertap-wordpress",
             "image" : "${var.ecr_repository_url}:${var.tag}",
             "memory" : 2048,
             "cpu" : 1024,
@@ -77,7 +77,7 @@ resource "aws_ecs_task_definition" "taskdef-clevertap-wordpress" {
                             }
 
 resource "aws_ecs_service" "service-clevertap-wordpress" {
-    name = "taskdef-clevertap-wordpress"
+    name = "clevertap-wordpress"
     cluster = aws_ecs_cluster.clevertap.id
     task_definition = aws_ecs_task_definition.taskdef-clevertap-wordpress.arn
     desired_count   = 1
