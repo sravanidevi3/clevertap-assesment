@@ -1,9 +1,11 @@
 data "aws_secretsmanager_secret" "clevertap" {
   arn = aws_secretsmanager_secret.clevertap.arn
+  depends_on = [aws_secretsmanager_secret.clevertap]
 }
 
 data "aws_secretsmanager_secret_version" "clevertapversion" {
   secret_id = data.aws_secretsmanager_secret.clevertap.arn
+  depends_on = [aws_secretsmanager_secret_version.clevertapversion]
 }
 
 locals {
