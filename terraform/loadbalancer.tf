@@ -48,7 +48,7 @@ resource "aws_lb_listener_rule" "rule-lb-clevertap" {
     condition {
       
       path_pattern {
-        values = ["/wp-admin/setup-config.php"]
+        values = ["/"]
       }
     }
   
