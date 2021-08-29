@@ -4,7 +4,7 @@ data "aws_db_instance" "database" {
 }
 
 resource "aws_ecs_task_definition" "taskdef-clevertap-wordpress" {
-    family = "taskdef-clevertap-wordpress"
+    family = "clevertap-wordpress"
     network_mode             = "awsvpc"
     requires_compatibilities = ["FARGATE"]
     memory                   = "2048"
