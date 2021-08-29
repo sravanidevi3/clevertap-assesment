@@ -51,7 +51,7 @@ resource "aws_ecs_task_definition" "taskdef-clevertap-wordpress" {
              },
              {
                   "name": "WORDPRESS_DB_PASSWORD",
-                  "value": "${local.db_creds.username}"
+                  "value": "${local.db_creds.password}"
               },
               {
                   "name": "WORDPRESS_DB_NAME",
