@@ -1,16 +1,5 @@
 version: '3.3'
 services:
-   db:
-     image: mysql:8.0
-     restart: always
-     environment:
-       MYSQL_ROOT_PASSWORD: clevertap
-       MYSQL_DATABASE: clevertap
-       MYSQL_USER: clevertap
-       MYSQL_PASSWORD: clevertap
-       volumes:
-           - ./database:/var/lib/mysql
-
    wordpress:
      depends_on:
        - db
